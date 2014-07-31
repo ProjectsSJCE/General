@@ -296,8 +296,8 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 		tprmarg[i]=0.;
     }
 
-//    create_initial_report(NUMfirm, NUMclient, NUMreps, firmcut, g, m, econ_out);
-	//initial report:
+//    create_initial_report(NUMfirm, NUMclient, NUMreps, firmcut, g, m, econ_out); first function with that bug i mentioned
+	//initial report: the above function should replace lines 301 to 320
 	econout  << setprecision(0) << endl ;
 	econout  << setw(18) << "Firms: "
 				<< setw(18) << "Clients: "
@@ -378,8 +378,8 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 					table[a][b] += related[i][j];
 
 
-//    print_out_table(firmcut, g, m, xtable, table, tabl_out); // print out table
-    for(a=0;a<3;a++)      // print out table
+//    print_out_table(firmcut, g, m, xtable, table, tabl_out); // the second function with problem, should replace lines 382 to 395
+    for(a=0;a<3;a++)      // print out table, 
     	{
     		tablout << (firmcut[a+1] - firmcut[a]) << '\t' ;
     		tablout << setw(5) << g[a][m] << '\t';

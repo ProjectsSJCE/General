@@ -11,6 +11,7 @@
 #include <string>
 #include <cfloat>
 #include <omp.h>
+#include<jdasjns>
 using namespace std;
 
 void bubble_sort(int *randarray, int **order, int NUMclient, int n)
@@ -296,8 +297,28 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 		tprmarg[i]=0.;
     }
 
-    create_initial_report(NUMfirm, NUMclient, NUMreps, firmcut, g, m, econ_out);
-	//initial report:
+//    create_initial_report(NUMfirm, NUMclient, NUMreps, firmcut, g, m, econ_out); first function with that bug i mentioned
+	//initial report: the above function should replace lines 301 to 320
+	econout  << setprecision(0) << endl ;
+	econout  << setw(18) << "Firms: "
+				<< setw(18) << "Clients: "
+				<< setw(18) << "Replications: " << endl;
+	econout  << setw(18) << NUMfirm
+				<< setw(18) << NUMclient
+				<< setw(18) << NUMreps << endl;
+	econout	<< setw(18) << "Number of Big: "
+				<< setw(18) << "Medium: "
+				<< setw(18) << "Small firms: " << endl;
+	econout	<< setw(18) << firmcut[1]
+				<< setw(18) << (firmcut[2]-firmcut[1])
+				<< setw(18) << (firmcut[3]-firmcut[2]) << endl;
+	econout  << setprecision(2);
+	econout  << setw(18) << "Gamma: Big: "
+				<< setw(18) << "Medium: "
+				<< setw(18) << "Small firms: " << endl;
+	econout  << setw(18) << g[0][m]
+				<< setw(18) << g[1][m]
+				<< setw(18) << g[2][m] << endl;
 
 	for (i=0;i<NUMfirm;i++)
 		fstogamma[i] = pow(firmsize[i],gamma[i]);  // for computation later
@@ -358,8 +379,8 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 					table[a][b] += related[i][j];
 
 
-//    print_out_table(firmcut, g, m, xtable, table, tabl_out); // print out table
-    for(a=0;a<3;a++)      // print out table
+//    print_out_table(firmcut, g, m, xtable, table, tabl_out); // the second function with problem, should replace lines 382 to 395
+    for(a=0;a<3;a++)      // print out table, 
     	{
     		tablout << (firmcut[a+1] - firmcut[a]) << '\t' ;
     		tablout << setw(5) << g[a][m] << '\t';
