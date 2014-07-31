@@ -11,7 +11,6 @@
 #include <string>
 #include <cfloat>
 #include <omp.h>
-#include<jdasjns>
 using namespace std;
 
 void bubble_sort(int *randarray, int **order, int NUMclient, int n)
