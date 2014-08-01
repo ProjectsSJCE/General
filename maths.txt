@@ -1,19 +1,29 @@
-pthread_t threads[num_threads];
-offset = (int)(NUMclient / num_threads);
-void *status;
-end = 0;
-for (iter=0; iter<num_threads; iter++)
+void create_threads(arguments, flag)
 {
-    start = end;
-    end += offset;
-    if( iter == (num_threads-1))
-        end = NUMclient - 1;
-    rc = pthread_create(&threads[iter], NULL, function, (void *)arguments(which include start and end)); should void* be there??
-}
-for (iter=0; iter<num_threads; iter++)
-{
-    rc = pthread_join(threads[iter], &status);
-}      
-wait for all threads to finish.
+    num_threads = 5; 
+    pthread_t threads[num_threads];
+    offset = (int)(NUMclient / num_threads);
+    void *status;
+    end = 0;
+    for (iter=0; iter<num_threads; iter++)
+    {
+        start = end;
+        end += offset;
+        if( iter == (num_threads-1))
+            end = NUMclient - 1;
+            
+        if (flag == 1)
+            rc = pthread_create(&threads[iter], NULL, initialise, (void *)arguments(which include start and end));
+        else if (flag == 2)
+            rc = pthread_create(&threads[iter], NULL, function, (void *)arguments(which include start and end));
+        else if (flag == 3) 
+            rc = pthread_create(&threads[iter], NULL, function, (void *)arguments(which include start and end));
+        else
+            rc = pthread_create(&threads[iter], NULL, function, (void *)arguments(which include start and end));
+    }
 
-now start with next function use above code.
+    for (iter=0; iter<num_threads; iter++)
+    {
+        rc = pthread_join(threads[iter], &status);
+    }      
+}
