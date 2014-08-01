@@ -11,6 +11,7 @@
 #include <string>
 #include <cfloat>
 #include <omp.h>
+#include <pthread.h>
 using namespace std;
 
 void bubble_sort(int *randarray, int **order, int NUMclient, int n)
@@ -110,12 +111,12 @@ void print_out_table(int firmcut[], double g[3][3], int m, double xtable[3][10],
     	tablout << endl;
 }
 
-void initialise(int NUMclient, double *clientscost, double *clientsprice, int NUMfirm, int **related, double *firmstatus, double *clientsize, double part1, double *gammap1, double **prices, double *clpr_ovr_clsz, double w, double fstogamma[])
+void initialise(int NUMclient, double *clientscost, double *clientsprice, int NUMfirm, int **related, double *firmstatus, double *clientsize, double part1, double *gammap1, double **prices, double *clpr_ovr_clsz, double w, double fstogamma[], int start, int end)//verify
 {
     int i, j;
     double tempdouble;
     
-	for (j=0;j<NUMclient;j++)
+	for (j=start;j<end;j++)
 	{
 		clientscost[j]  = 999999999999.;     // initialize for tracking minima
 		clientsprice[j] = 999999999999.;
@@ -139,6 +140,132 @@ void initialise(int NUMclient, double *clientscost, double *clientsprice, int NU
 		}
 		clpr_ovr_clsz[j] = clientsprice[j] / clientsize[j]; // price over client size
 	}
+}
+
+void SetToZero(double array[], int size)
+{
+    int i;
+    for(i=0; i < size; i++)
+    {
+        array[i] = 0;
+    }
+}
+
+void initializeFirmAndRelated(double tclpr_ovr_clsz[], double firmstatus[], int **related, int NUMfirm, int NUMclient)
+{
+    int i, j;
+    for (i=0;i<NUMfirm;i++)
+	{
+		tclpr_ovr_clsz[i]=0.;
+		firmstatus[i] = 0.;             // initialize firm status
+		for (j=0;j<NUMclient;j++)       // no one is assigned at start
+			related[i][j] = 0;
+	}
+}
+
+void performComputation(int **related, int **order, double clientsmin[], double firmstatus[], double gammap1[], double **prices, int clientsfirm[], double clientsize[], double fstogamma[], int dupprice[], int n, int NUMclient, int NUMfirm, int start, int end)
+{
+    int j, i, a, b, tempint, k;
+    double part1, w, tempdouble;
+    for (k=start;k<end;k++)
+	{
+        j = order[n][k];                // according to randomly sorted indices
+	    clientsmin[j] = 99999999999.;	// initialize before tracking min.
+	    tempint = 0;
+	    for (i=0;i<NUMfirm;i++)
+	    {
+		    part1 = pow(firmstatus[i],gammap1[i]);
+		    prices[i][j] = w * ((pow((firmstatus[i] + clientsize[j]),gammap1[i]) - part1) / fstogamma[i]);
+		    if (prices[i][j] < clientsmin[j])	// note minimum price so far
+		    {
+			     clientsmin[j] = prices[i][j];
+			     clientsfirm[j] = i;
+			     dupprice[tempint] = i;
+		    }
+		    else if (prices[i][j] == clientsmin[j])  // if new price ties old min
+		    {
+			    tempint++;
+			    dupprice[tempint] = i;
+		    }
+		    if (tempint)  // randomly select from firms which tie above
+		    {
+			    tempdouble = double(tempint+1)/RAND_MAX;
+			    a = tempint;
+			    while (a >= tempint)
+				    a = int(rand()*tempdouble);
+			    clientsfirm[j] = dupprice[a];
+		    }
+	    }
+	    related[clientsfirm[j]][j]=1;
+	    firmstatus[clientsfirm[j]] += clientsize[j];
+    }
+}
+
+void CalculateLowest(int NUMfirm, int clientsfirm[], int clientrival[], double **prices, double clientsprice[], int start, int end)
+{
+    int i, j;
+    for (j=start;j<end;j++)	// at this point client is at lowest price firm
+	{
+        for (i=0;i<NUMfirm;i++)
+			if ((prices[i][j] < clientsprice[j])     // prices are lowest of
+				&& (clientsfirm[j] != i))
+					clientrival[j] = i;
+//		CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, j);
+	}
+}
+
+void ObtainRivalTable(long int priceset[3][3][10], int clientrival[], int firmcut[], int clientsfirm[], double tempdouble, int start, int end)
+{
+    int a, b, c, j;
+	for (j=start;j<end;j++)
+	{
+		//PERFORM MULITTHREADING HERE
+        if(clientrival[j] < firmcut[1])	// get nearest rival type
+			    a=0;
+	    else if(clientrival[j] < firmcut[2])
+		    a=1;
+	    else
+		    a=2;
+	    if(clientsfirm[j] < firmcut[1])	// get audit firm type
+		    b=0;
+	    else if(clientsfirm[j] < firmcut[2])
+		    b=1;
+	    else
+		    b=2;
+	    c = int(double(j)/tempdouble);	// get proper client decile
+	    priceset[a][b][c]++;				// augment proper counter    
+//		ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, NUMclient, j);
+	}
+}
+
+void create_threads(int **related,int ** order,double  *clientsmin,double *firmstatus,double *gammap1,double **prices,int *clientsfirm, double *clientsize,double *fstogamma, int *dupprice,int n,int NUMclient,int NUMfirm,double *clientscost,double *clientsprice,double part1,double *clpr_ovr_clsz,double w, int *clientrival,long int priceset[3][3][10],int firmcut[],double tempdouble, int flag)
+{
+    int num_threads = 5, offset, iter; 
+    pthread_t threads[num_threads];
+    offset = (int)(NUMclient / num_threads);
+    void *status;
+    int end = 0, start, rc;
+    for (iter=0; iter<num_threads; iter++)
+    {
+        start = end;
+        end += offset;
+        if( iter == (num_threads-1))
+            end = NUMclient - 1;
+            
+        if (flag == 1)
+            rc = pthread_create(&threads[iter], NULL,performComputation, (void *)(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end));
+        else if (flag == 2)
+            rc = pthread_create(&threads[iter], NULL, initialise, (void *)(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end));
+        else if (flag == 3) 
+            rc = pthread_create(&threads[iter], NULL, CalculateLowest, (void *)(NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end));
+        else
+            rc = pthread_create(&threads[iter], NULL, ObtainRivalTable, (void *)(priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end));
+    }
+
+    for (iter=0; iter<num_threads; iter++)
+    {
+        rc = pthread_join(threads[iter], &status);
+    }      
 }
 
 int main()
@@ -317,16 +444,12 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
     setup_firm_cutoff(firmcut, NUMfirm, gamma, g, m, gammap1); // set up gamma by firm cutoff
 
     init_accumulators(xtable, priceset); //initialize accumulators
-	
-	for (i=0;i<NUMfirm;i++)
-	{
-		tpricepfirm[i]=0.;
-		xtcostpfirm[i]=0.;
-		tfirmstatus[i]=0.;
-		aclpr_ovr_clsz[i]=0.;
-		tcpf_ovr_fst[i]=0.;
-		tprmarg[i]=0.;
-    }
+
+    SetToZero(tpricepfirm, NUMfirm);
+    SetToZero(xtcostpfirm, NUMfirm);
+	SetToZero(tfirmstatus, NUMfirm);
+	SetToZero(aclpr_ovr_clsz, NUMfirm);
+	SetToZero(tprmarg, NUMfirm);
 
     write_econout_1(NUMfirm, NUMclient, NUMreps, firmcut, g, m, econout); 
 
@@ -335,48 +458,15 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 
  for (n=0;n<NUMreps;n++)
  {
-	for (i=0;i<NUMfirm;i++)
-	{
-		tclpr_ovr_clsz[i]=0.;
-		firmstatus[i] = 0.;             // initialize firm status
-		for (j=0;j<NUMclient;j++)       // no one is assigned at start
-			related[i][j] = 0;
-	}
+	
+    initializeFirmAndRelated(tclpr_ovr_clsz, firmstatus, related, NUMfirm, NUMclient);
 
-	for (k=0;k<NUMclient;k++)
-	{
-        j = order[n][k];                // according to randomly sorted indices
-
-		clientsmin[j] = 99999999999.;	// initialize before tracking min.
-		tempint = 0;
-		for (i=0;i<NUMfirm;i++)
-		{
-			part1 = pow(firmstatus[i],gammap1[i]);
-			prices[i][j] = w * ((pow((firmstatus[i] + clientsize[j]),gammap1[i]) - part1) / fstogamma[i]);
-			if (prices[i][j] < clientsmin[j])	// note minimum price so far
-			{
-				 clientsmin[j] = prices[i][j];
-				 clientsfirm[j] = i;
-				 dupprice[tempint] = i;
-			}
-			else if (prices[i][j] == clientsmin[j])  // if new price ties old min
-			{
-				tempint++;
-				dupprice[tempint] = i;
-			}
-			if (tempint)  // randomly select from firms which tie above
-			{
-				tempdouble = double(tempint+1)/RAND_MAX;
-				a = tempint;
-				while (a >= tempint)
-					a = int(rand()*tempdouble);
-				clientsfirm[j] = dupprice[a];
-			}
-		}
-		related[clientsfirm[j]][j]=1;
-		firmstatus[clientsfirm[j]] += clientsize[j];
-	}
-
+    //PERFORM MULITTHREADING HERE ----------------------------------------------------------------------------------------------------
+    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+    
+//    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, 0, NUMclient);        
+//-----------------------------------------------------------------------------------------------------------------    
+    
 	// tally distribution of clients
 	for(a=0;a<3;a++)
 		for(b=0;b<10;b++)
@@ -395,35 +485,22 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 	for (j=0;j<NUMclient;j++) // these are prices developed en route
 		totalcost += clientsmin[j];
 	cout << "accumulated cost during assignment: " << totalcost << endl;
+    
+//    PERFORM MULITTHREADING ------------------------------------------------------------------------------------------------
+//    initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, 0, NUMclient);
+    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+//----------------------------------------------------------------------------------------------------------------------------
 
-    initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma);
+    // PERFORM MULITTHREADING HERE	-------------------------------------------------------------------------------------------------
+//	CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, 0, NUMclient);
+	create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+//---------------------------------------------------------------------------------------------------------
 
-	for (j=0;j<NUMclient;j++)	// at this point client is at lowest price firm
-	{
-		for (i=0;i<NUMfirm;i++)
-			if ((prices[i][j] < clientsprice[j])     // prices are lowest of
-				&& (clientsfirm[j] != i))
-					clientrival[j] = i;
-	}
-
+    /// YOU WILL HAVE TO MULTITHREAD HERE ---------------------------------------------------------------------------------------------------------
 	tempdouble = double(NUMclient)/10.;  // for rivlout output, nearest rival table
-	for (j=0;j<NUMclient;j++)
-	{
-		if(clientrival[j] < firmcut[1])	// get nearest rival type
-			a=0;
-		else if(clientrival[j] < firmcut[2])
-			a=1;
-		else
-			a=2;
-		if(clientsfirm[j] < firmcut[1])	// get audit firm type
-			b=0;
-		else if(clientsfirm[j] < firmcut[2])
-			b=1;
-		else
-			b=2;
-		c = int(double(j)/tempdouble);	// get proper client decile
-		priceset[a][b][c]++;				// augment proper counter
-	}
+create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,,clientrival,priceset,firmcut,tempdouble,2);
+//	ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, 0, NUMclient);
+//---------------------------------------------------------------------------------------------------------
 
 	for (i=0;i<NUMfirm;i++)
 	{

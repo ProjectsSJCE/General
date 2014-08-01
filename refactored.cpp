@@ -11,6 +11,7 @@
 #include <string>
 #include <cfloat>
 #include <omp.h>
+#include <pthread.h>
 using namespace std;
 
 void bubble_sort(int *randarray, int **order, int NUMclient, int n)
@@ -235,7 +236,36 @@ void ObtainRivalTable(long int priceset[3][3][10], int clientrival[], int firmcu
 	    priceset[a][b][c]++;				// augment proper counter    
 //		ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, NUMclient, j);
 	}
+}
 
+void create_threads(int **related,int ** order,double  *clientsmin,double *firmstatus,double *gammap1,double **prices,int *clientsfirm, double *clientsize,double *fstogamma, int *dupprice,int n,int NUMclient,int NUMfirm,double *clientscost,double *clientsprice,double part1,double *clpr_ovr_clsz,double w, int *clientrival,long int priceset[3][3][10],int firmcut[],double tempdouble, int flag)
+{
+    int num_threads = 5, offset, iter; 
+    pthread_t threads[num_threads];
+    offset = (int)(NUMclient / num_threads);
+    void *status;
+    int end = 0, start, rc;
+    for (iter=0; iter<num_threads; iter++)
+    {
+        start = end;
+        end += offset;
+        if( iter == (num_threads-1))
+            end = NUMclient - 1;
+            
+        if (flag == 1)
+            rc = pthread_create(&threads[iter], NULL,performComputation, (void *)(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end));
+        else if (flag == 2)
+            rc = pthread_create(&threads[iter], NULL, initialise, (void *)(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end));
+        else if (flag == 3) 
+            rc = pthread_create(&threads[iter], NULL, CalculateLowest, (void *)(NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end));
+        else
+            rc = pthread_create(&threads[iter], NULL, ObtainRivalTable, (void *)(priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end));
+    }
+
+    for (iter=0; iter<num_threads; iter++)
+    {
+        rc = pthread_join(threads[iter], &status);
+    }      
 }
 
 int main()
@@ -432,7 +462,9 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
     initializeFirmAndRelated(tclpr_ovr_clsz, firmstatus, related, NUMfirm, NUMclient);
 
     //PERFORM MULITTHREADING HERE ----------------------------------------------------------------------------------------------------
-    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, 0, NUMclient);        
+    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+    
+//    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, 0, NUMclient);        
 //-----------------------------------------------------------------------------------------------------------------    
     
 	// tally distribution of clients
@@ -455,16 +487,19 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 	cout << "accumulated cost during assignment: " << totalcost << endl;
     
 //    PERFORM MULITTHREADING ------------------------------------------------------------------------------------------------
-    initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, 0, NUMclient);
+//    initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, 0, NUMclient);
+    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
 //----------------------------------------------------------------------------------------------------------------------------
 
     // PERFORM MULITTHREADING HERE	-------------------------------------------------------------------------------------------------
-	CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, 0, NUMclient);
+//	CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, 0, NUMclient);
+	create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
 //---------------------------------------------------------------------------------------------------------
 
     /// YOU WILL HAVE TO MULTITHREAD HERE ---------------------------------------------------------------------------------------------------------
 	tempdouble = double(NUMclient)/10.;  // for rivlout output, nearest rival table
-	ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, 0, NUMclient);
+create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+//	ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, 0, NUMclient);
 //---------------------------------------------------------------------------------------------------------
 
 	for (i=0;i<NUMfirm;i++)
