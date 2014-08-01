@@ -141,6 +141,66 @@ void initialise(int NUMclient, double *clientscost, double *clientsprice, int NU
 	}
 }
 
+void SetToZero(double array[], int size)
+{
+    int i;
+    for(i=0; i < size; i++)
+    {
+        array[i] = 0;
+    }
+}
+
+void initializeFirmAndRelated(double tclpr_ovr_clsz[], double firmstatus[], int **related, int NUMfirm, int NUMclient)
+{
+    int i, j;
+    for (i=0;i<NUMfirm;i++)
+	{
+		tclpr_ovr_clsz[i]=0.;
+		firmstatus[i] = 0.;             // initialize firm status
+		for (j=0;j<NUMclient;j++)       // no one is assigned at start
+			related[i][j] = 0;
+	}
+}
+
+void performComputation(int **related, int **order, double clientsmin[], double firmstatus[], double gammap1[], double **prices, int clientsfirm[], double clientsize[], double fstogamma[], int dupprice[], int n, int NUMclient, int NUMfirm)
+{
+    int k, j, i, a, b, tempint;
+    double part1, w, tempdouble;
+    for (k=0;k<NUMclient;k++)
+	{
+        j = order[n][k];                // according to randomly sorted indices
+
+		clientsmin[j] = 99999999999.;	// initialize before tracking min.
+		tempint = 0;
+		for (i=0;i<NUMfirm;i++)
+		{
+			part1 = pow(firmstatus[i],gammap1[i]);
+			prices[i][j] = w * ((pow((firmstatus[i] + clientsize[j]),gammap1[i]) - part1) / fstogamma[i]);
+			if (prices[i][j] < clientsmin[j])	// note minimum price so far
+			{
+				 clientsmin[j] = prices[i][j];
+				 clientsfirm[j] = i;
+				 dupprice[tempint] = i;
+			}
+			else if (prices[i][j] == clientsmin[j])  // if new price ties old min
+			{
+				tempint++;
+				dupprice[tempint] = i;
+			}
+			if (tempint)  // randomly select from firms which tie above
+			{
+				tempdouble = double(tempint+1)/RAND_MAX;
+				a = tempint;
+				while (a >= tempint)
+					a = int(rand()*tempdouble);
+				clientsfirm[j] = dupprice[a];
+			}
+		}
+		related[clientsfirm[j]][j]=1;
+		firmstatus[clientsfirm[j]] += clientsize[j];
+	}
+}
+
 int main()
 {
 	int start_s=clock();
@@ -317,16 +377,12 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
     setup_firm_cutoff(firmcut, NUMfirm, gamma, g, m, gammap1); // set up gamma by firm cutoff
 
     init_accumulators(xtable, priceset); //initialize accumulators
-	
-	for (i=0;i<NUMfirm;i++)
-	{
-		tpricepfirm[i]=0.;
-		xtcostpfirm[i]=0.;
-		tfirmstatus[i]=0.;
-		aclpr_ovr_clsz[i]=0.;
-		tcpf_ovr_fst[i]=0.;
-		tprmarg[i]=0.;
-    }
+
+    SetToZero(tpricepfirm, NUMfirm);
+    SetToZero(xtcostpfirm, NUMfirm);
+	SetToZero(tfirmstatus, NUMfirm);
+	SetToZero(aclpr_ovr_clsz, NUMfirm);
+	SetToZero(tprmarg, NUMfirm);
 
     write_econout_1(NUMfirm, NUMclient, NUMreps, firmcut, g, m, econout); 
 
@@ -335,48 +391,13 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 
  for (n=0;n<NUMreps;n++)
  {
-	for (i=0;i<NUMfirm;i++)
-	{
-		tclpr_ovr_clsz[i]=0.;
-		firmstatus[i] = 0.;             // initialize firm status
-		for (j=0;j<NUMclient;j++)       // no one is assigned at start
-			related[i][j] = 0;
-	}
+	
+    initializeFirmAndRelated(tclpr_ovr_clsz, firmstatus, related, NUMfirm, NUMclient);
 
-	for (k=0;k<NUMclient;k++)
-	{
-        j = order[n][k];                // according to randomly sorted indices
-
-		clientsmin[j] = 99999999999.;	// initialize before tracking min.
-		tempint = 0;
-		for (i=0;i<NUMfirm;i++)
-		{
-			part1 = pow(firmstatus[i],gammap1[i]);
-			prices[i][j] = w * ((pow((firmstatus[i] + clientsize[j]),gammap1[i]) - part1) / fstogamma[i]);
-			if (prices[i][j] < clientsmin[j])	// note minimum price so far
-			{
-				 clientsmin[j] = prices[i][j];
-				 clientsfirm[j] = i;
-				 dupprice[tempint] = i;
-			}
-			else if (prices[i][j] == clientsmin[j])  // if new price ties old min
-			{
-				tempint++;
-				dupprice[tempint] = i;
-			}
-			if (tempint)  // randomly select from firms which tie above
-			{
-				tempdouble = double(tempint+1)/RAND_MAX;
-				a = tempint;
-				while (a >= tempint)
-					a = int(rand()*tempdouble);
-				clientsfirm[j] = dupprice[a];
-			}
-		}
-		related[clientsfirm[j]][j]=1;
-		firmstatus[clientsfirm[j]] += clientsize[j];
-	}
-
+    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm);
+    
+//    int **related, int **order, double clientsmin[], double firmstatus[], double gammap1[], double **prices, int clientsfirm[], double clientsize[], double fstogamma[], int dupprice[], int n, int NUMclient, int NUMfirm)
+    
 	// tally distribution of clients
 	for(a=0;a<3;a++)
 		for(b=0;b<10;b++)
