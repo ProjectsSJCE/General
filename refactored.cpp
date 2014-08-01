@@ -57,16 +57,9 @@ void init_accumulators(double xtable[3][10], long int priceset[3][3][10])
 	    	}
 }
 
-void create_initial_report(int NUMfirm, int NUMclient, int NUMreps, int firmcut[], double g[3][3], int m, const char * econ_out)
+void write_econout_1(int NUMfirm, int NUMclient, int NUMreps, int firmcut[], double g[3][3], int m, std::ofstream& econout)
 {
-    ofstream econout(econ_out);
-    econout.setf(ios::showpoint);
-	econout.setf(ios::fixed, ios::floatfield);
-	econout.setf(ios::right, ios::adjustfield);
 
-    econout.setf(ios::showpoint);
-	econout.setf(ios::fixed, ios::floatfield);
-	econout.setf(ios::right, ios::adjustfield);
 	econout  << setprecision(0) << endl ;
 	econout  << setw(18) << "Firms: "
 				<< setw(18) << "Clients: "
@@ -80,20 +73,27 @@ void create_initial_report(int NUMfirm, int NUMclient, int NUMreps, int firmcut[
 	econout	<< setw(18) << firmcut[1]
 				<< setw(18) << (firmcut[2]-firmcut[1])
 				<< setw(18) << (firmcut[3]-firmcut[2]) << endl;
-//	econout  << setprecision(2);
-//	econout  << setw(18) << "Gamma: Big: "
-//				<< setw(18) << "Medium: "
-//				<< setw(18) << "Small firms: " << endl;
-//	econout  << setw(18) << g[0][m]
-//				<< setw(18) << g[1][m]
-//				<< setw(18) << g[2][m] << endl;
+	econout  << setprecision(2);
+	econout  << setw(18) << "Gamma: Big: "
+				<< setw(18) << "Medium: "
+				<< setw(18) << "Small firms: " << endl;
+	econout  << setw(18) << g[0][m]
+				<< setw(18) << g[1][m]
+				<< setw(18) << g[2][m] << endl;
 
 }
 
-void print_out_table(int firmcut[], double g[3][3], int m, double xtable[3][10], int table[3][10], const char * tabl_out)
+void write_econout_2(double totalprice, double totalcost, std::ofstream& econout)
+{
+	econout << setw(18) << totalprice;
+	econout << setw(18) << totalcost;
+	econout << setw(18) <<(totalprice - totalcost);
+	econout << endl ;
+}
+
+void print_out_table(int firmcut[], double g[3][3], int m, double xtable[3][10], int table[3][10], std::ofstream& tablout)
 {
     int a, b;
-    ofstream tablout(tabl_out);
     for(a=0;a<3;a++)      
     	{
     		tablout << (firmcut[a+1] - firmcut[a]) << '\t' ;
@@ -296,28 +296,7 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 		tprmarg[i]=0.;
     }
 
-//    create_initial_report(NUMfirm, NUMclient, NUMreps, firmcut, g, m, econ_out); first function with that bug i mentioned
-	//initial report: the above function should replace lines 301 to 320
-	econout  << setprecision(0) << endl ;
-	econout  << setw(18) << "Firms: "
-				<< setw(18) << "Clients: "
-				<< setw(18) << "Replications: " << endl;
-	econout  << setw(18) << NUMfirm
-				<< setw(18) << NUMclient
-				<< setw(18) << NUMreps << endl;
-	econout	<< setw(18) << "Number of Big: "
-				<< setw(18) << "Medium: "
-				<< setw(18) << "Small firms: " << endl;
-	econout	<< setw(18) << firmcut[1]
-				<< setw(18) << (firmcut[2]-firmcut[1])
-				<< setw(18) << (firmcut[3]-firmcut[2]) << endl;
-	econout  << setprecision(2);
-	econout  << setw(18) << "Gamma: Big: "
-				<< setw(18) << "Medium: "
-				<< setw(18) << "Small firms: " << endl;
-	econout  << setw(18) << g[0][m]
-				<< setw(18) << g[1][m]
-				<< setw(18) << g[2][m] << endl;
+    write_econout_1(NUMfirm, NUMclient, NUMreps, firmcut, g, m, econout); 
 
 	for (i=0;i<NUMfirm;i++)
 		fstogamma[i] = pow(firmsize[i],gamma[i]);  // for computation later
@@ -378,21 +357,7 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 					table[a][b] += related[i][j];
 
 
-//    print_out_table(firmcut, g, m, xtable, table, tabl_out); // the second function with problem, should replace lines 382 to 395
-    for(a=0;a<3;a++)      // print out table, 
-    	{
-    		tablout << (firmcut[a+1] - firmcut[a]) << '\t' ;
-    		tablout << setw(5) << g[a][m] << '\t';
-    		for(b=0;b<10;b++)
-    		{
-    			xtable[a][b] += double(table[a][b]);
-    			cout << setw(6) << table[a][b] ;
-    			tablout << setw(6) << table[a][b] ;
-    		}
-    		cout << endl;
-    		tablout << endl;
-    	}
-    	tablout << endl;
+    print_out_table(firmcut, g, m, xtable, table, tablout);
 
 	totalcost = 0.;
 	for (j=0;j<NUMclient;j++) // these are prices developed en route
@@ -483,7 +448,7 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 		tprmarg[i] += (tpricepfirm[i]>0.) ? (profit[i] / tpricepfirm[i]) : 0.;
 	}
 
-
+    
 	if (n==0)
 	{
 		econout << setw(18) << "total price: " ;
@@ -491,10 +456,7 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 		econout << setw(18) << "total profit: " ;
 		econout << endl ;
 	}
-	econout << setw(18) << totalprice;
-	econout << setw(18) << totalcost;
-	econout << setw(18) <<(totalprice - totalcost);
-	econout << endl ;
+    write_econout_2(totalprice, totalcost, econout);
 
 	if (greedymethod==2)
 		cout<<"completed replication "<<(n+1)<<" of "<<NUMreps
