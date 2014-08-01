@@ -1,0 +1,15 @@
+offset = (int)(NUMclient / num_threads);
+create threads( num_threads in number)
+end = 0;
+for (iter=0; iter<num_threads; iter++)
+{
+    start = end;
+    end += offset;
+    if( iter == (num_threads-1))
+        end = NUMclient;
+    thread[i].start(function, arguments(which include start and end);
+}
+
+wait for all threads to finish.
+
+now start with next function use above code.
