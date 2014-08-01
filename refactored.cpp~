@@ -109,6 +109,38 @@ void print_out_table(int firmcut[], double g[3][3], int m, double xtable[3][10],
     	}
     	tablout << endl;
 }
+
+void initialise(int NUMclient, double *clientscost, double *clientsprice, int NUMfirm, int **related, double *firmstatus, double *clientsize, double part1, double *gammap1, double **prices, double *clpr_ovr_clsz, double w, double fstogamma[])
+{
+    int i, j;
+    double tempdouble;
+    
+	for (j=0;j<NUMclient;j++)
+	{
+		clientscost[j]  = 999999999999.;     // initialize for tracking minima
+		clientsprice[j] = 999999999999.;
+		for (i=0;i<NUMfirm;i++)
+		{
+			if (related[i][j])
+				tempdouble = firmstatus[i] - clientsize[j];
+			else
+				tempdouble = firmstatus[i];
+			part1 = pow(tempdouble,gammap1[i]);
+			prices[i][j] = w * ((
+					pow((tempdouble + clientsize[j]),gammap1[i])
+					- part1) / fstogamma[i]);
+			if (prices[i][j] <= clientscost[j])	// note minimum price so far
+			{
+				 clientsprice[j] = clientscost[j];
+				 clientscost[j] = prices[i][j];
+			}
+			else if (prices[i][j] < clientsprice[j])
+				clientsprice[j] = prices[i][j];
+		}
+		clpr_ovr_clsz[j] = clientsprice[j] / clientsize[j]; // price over client size
+	}
+}
+
 int main()
 {
 	int start_s=clock();
@@ -364,30 +396,7 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 		totalcost += clientsmin[j];
 	cout << "accumulated cost during assignment: " << totalcost << endl;
 
-	for (j=0;j<NUMclient;j++)
-	{
-		clientscost[j]  = 999999999999.;     // initialize for tracking minima
-		clientsprice[j] = 999999999999.;
-		for (i=0;i<NUMfirm;i++)
-		{
-			if (related[i][j])
-				tempdouble = firmstatus[i] - clientsize[j];
-			else
-				tempdouble = firmstatus[i];
-			part1 = pow(tempdouble,gammap1[i]);
-			prices[i][j] = w * ((
-					pow((tempdouble + clientsize[j]),gammap1[i])
-					- part1) / fstogamma[i]);
-			if (prices[i][j] <= clientscost[j])	// note minimum price so far
-			{
-				 clientsprice[j] = clientscost[j];
-				 clientscost[j] = prices[i][j];
-			}
-			else if (prices[i][j] < clientsprice[j])
-				clientsprice[j] = prices[i][j];
-		}
-		clpr_ovr_clsz[j] = clientsprice[j] / clientsize[j]; // price over client size
-	}
+    initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma);
 
 	for (j=0;j<NUMclient;j++)	// at this point client is at lowest price firm
 	{
