@@ -164,7 +164,7 @@ void initializeFirmAndRelated(double tclpr_ovr_clsz[], double firmstatus[], int 
 
 void performComputation(int **related, int **order, double clientsmin[], double firmstatus[], double gammap1[], double **prices, int clientsfirm[], double clientsize[], double fstogamma[], int dupprice[], int n, int NUMclient, int NUMfirm, int start, int end)
 {
-    int j, i, a, b, tempint;
+    int j, i, a, b, tempint, k;
     double part1, w, tempdouble;
     for (k=start;k<end;k++)
 	{
@@ -202,7 +202,7 @@ void performComputation(int **related, int **order, double clientsmin[], double 
 
 void CalculateLowest(int NUMfirm, int clientsfirm[], int clientrival[], double **prices, double clientsprice[], int start, int end)
 {
-    int i;
+    int i, j;
     for (j=start;j<end;j++)	// at this point client is at lowest price firm
 	{
         for (i=0;i<NUMfirm;i++)
@@ -219,7 +219,6 @@ void ObtainRivalTable(long int priceset[3][3][10], int clientrival[], int firmcu
 	for (j=start;j<end;j++)
 	{
 		//PERFORM MULITTHREADING HERE
-		tempdouble = double(NUMclient)/10.;
         if(clientrival[j] < firmcut[1])	// get nearest rival type
 			    a=0;
 	    else if(clientrival[j] < firmcut[2])
@@ -433,7 +432,7 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
     initializeFirmAndRelated(tclpr_ovr_clsz, firmstatus, related, NUMfirm, NUMclient);
 
     //PERFORM MULITTHREADING HERE ----------------------------------------------------------------------------------------------------
-    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, k);        
+    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, 0, NUMclient);        
 //-----------------------------------------------------------------------------------------------------------------    
     
 	// tally distribution of clients
