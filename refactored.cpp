@@ -253,13 +253,13 @@ void create_threads(int **related,int ** order,double  *clientsmin,double *firms
             end = NUMclient - 1;
             
         if (flag == 1)
-            rc = pthread_create(&threads[iter], NULL,performComputation, (void *)(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end));
+            std::thread pthread_create(&threads[iter], NULL,"performComputation", related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
         else if (flag == 2)
-            rc = pthread_create(&threads[iter], NULL, initialise, (void *)(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end));
+            std::thread pthread_create(&threads[iter], NULL, "initialise", NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end);
         else if (flag == 3) 
-            rc = pthread_create(&threads[iter], NULL, CalculateLowest, (void *)(NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end));
+            std::thread pthread_create(&threads[iter], NULL, "CalculateLowest", NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end);
         else
-            rc = pthread_create(&threads[iter], NULL, ObtainRivalTable, (void *)(priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end));
+            std::thread pthread_create(&threads[iter], NULL, "ObtainRivalTable", priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end));
     }
 
     for (iter=0; iter<num_threads; iter++)
@@ -498,7 +498,7 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 
     /// YOU WILL HAVE TO MULTITHREAD HERE ---------------------------------------------------------------------------------------------------------
 	tempdouble = double(NUMclient)/10.;  // for rivlout output, nearest rival table
-create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
 //	ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, 0, NUMclient);
 //---------------------------------------------------------------------------------------------------------
 
