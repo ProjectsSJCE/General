@@ -1,23 +1,31 @@
-    #include <iostream>
-    #include <thread>
-    using namespace std;
-    //This function will be called from a thread
+#include <omp.h>
+#include<stdio.h>
+#include<iostream>
+using namespace std;
 
-    void call_from_thread(int i, int j, int k) {
-        cout<<"I = "<<i<<j<<k;
-        std::cout << "Hello, World" << std::endl;
-    }
+void add(int a)
+{
+    cout<<"working "<<a<<"\n";
+//    return (a+b);
+}
 
-    int main() {
-        //Launch a thread
-        int i = 10, a= 15, b = 20;
-        cout<<"Aaaa";
-        std::thread t1(call_from_thread, i, a, b);
-        
+int main()
+{
+    int nthreads, tid;
+    omp_set_num_threads(5);
+/* Fork a team of threads with each thread having a private tid variable */
+    #pragma omp parallel private(tid)
+    {
+        add(omp_get_thread_num());            
 
-        //Join the thread with the main thread
-        t1.join();
-        cout<<"hello\n";
-        return 0;
-    }
+  /* Only master thread does this */
+//      if (tid == 0) 
+//        {
+//        nthreads = omp_get_num_threads();
+//        printf("Number of threads = %d\n", nthreads);
+//        }
+    } 
+    return 0;
+}
+
 
