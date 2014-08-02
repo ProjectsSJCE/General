@@ -244,6 +244,7 @@ void create_threads(int **related,int ** order,double  *clientsmin,double *firms
     int end = 0, start, rc;
     offset = (int)(NUMclient / num_threads);
     int tid;
+    
     omp_set_num_threads(num_threads);
     #pragma omp parallel private(tid)
 //    for (iter=0; iter<num_threads; iter++)
