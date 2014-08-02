@@ -240,7 +240,7 @@ void ObtainRivalTable(long int priceset[3][3][10], int clientrival[], int firmcu
 
 void create_threads(int **related,int ** order,double  *clientsmin,double *firmstatus,double *gammap1,double **prices,int *clientsfirm, double *clientsize,double *fstogamma, int *dupprice,int n,int NUMclient,int NUMfirm,double *clientscost,double *clientsprice,double part1,double *clpr_ovr_clsz,double w, int *clientrival,long int priceset[3][3][10],int firmcut[],double tempdouble, int flag)
 {
-    int num_threads = 5, offset, iter; 
+    int num_threads = 8, offset, iter; 
     int end = 0, start, rc;
     offset = (int)(NUMclient / num_threads);
     void *status;
