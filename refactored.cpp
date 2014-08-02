@@ -463,7 +463,7 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
     initializeFirmAndRelated(tclpr_ovr_clsz, firmstatus, related, NUMfirm, NUMclient);
 
     //PERFORM MULITTHREADING HERE ----------------------------------------------------------------------------------------------------
-    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,1);
     
 //    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, 0, NUMclient);        
 //-----------------------------------------------------------------------------------------------------------------    
@@ -494,12 +494,12 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 
     // PERFORM MULITTHREADING HERE	-------------------------------------------------------------------------------------------------
 //	CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, 0, NUMclient);
-	create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+	create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,3);
 //---------------------------------------------------------------------------------------------------------
 
     /// YOU WILL HAVE TO MULTITHREAD HERE ---------------------------------------------------------------------------------------------------------
 	tempdouble = double(NUMclient)/10.;  // for rivlout output, nearest rival table
-    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,4);
 //	ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, 0, NUMclient);
 //---------------------------------------------------------------------------------------------------------
 
