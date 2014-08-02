@@ -11,7 +11,7 @@
 #include <string>
 #include <cfloat>
 #include <omp.h>
-#include <pthread.h>
+#include <thread>
 using namespace std;
 
 void bubble_sort(int *randarray, int **order, int NUMclient, int n)
@@ -241,10 +241,11 @@ void ObtainRivalTable(long int priceset[3][3][10], int clientrival[], int firmcu
 void create_threads(int **related,int ** order,double  *clientsmin,double *firmstatus,double *gammap1,double **prices,int *clientsfirm, double *clientsize,double *fstogamma, int *dupprice,int n,int NUMclient,int NUMfirm,double *clientscost,double *clientsprice,double part1,double *clpr_ovr_clsz,double w, int *clientrival,long int priceset[3][3][10],int firmcut[],double tempdouble, int flag)
 {
     int num_threads = 5, offset, iter; 
-    pthread_t threads[num_threads];
+    int end = 0, start, rc;
     offset = (int)(NUMclient / num_threads);
     void *status;
-    int end = 0, start, rc;
+    std::thread t[num_threads];
+
     for (iter=0; iter<num_threads; iter++)
     {
         start = end;
@@ -253,18 +254,18 @@ void create_threads(int **related,int ** order,double  *clientsmin,double *firms
             end = NUMclient - 1;
             
         if (flag == 1)
-            std::thread pthread_create(&threads[iter], NULL,"performComputation", related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
+            t[iter] = std::thread(performComputation, related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
         else if (flag == 2)
-            std::thread pthread_create(&threads[iter], NULL, "initialise", NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end);
+            t[iter] = std::thread(initialise, NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end);
         else if (flag == 3) 
-            std::thread pthread_create(&threads[iter], NULL, "CalculateLowest", NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end);
+            t[iter] = std::thread(CalculateLowest, NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end);
         else
-            std::thread pthread_create(&threads[iter], NULL, "ObtainRivalTable", priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end));
+            t[iter] = std::thread(ObtainRivalTable, priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end);
     }
 
     for (iter=0; iter<num_threads; iter++)
     {
-        rc = pthread_join(threads[iter], &status);
+        t[iter].join();
     }      
 }
 
