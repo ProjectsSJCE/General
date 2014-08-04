@@ -1,0 +1,1120 @@
+    53    72    72    75    67    79    78    55    71    60
+    71    68    72    72    64    86    51    69    56    73
+    57    66    64    60    76    61    88    80    64    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 6.82e+13
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 6.82e+13
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 6.82e+13
+    74    74    64    78    57    64    61    74    67    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 6.82e+13
+    71    68    63    67    68    63    74    62    63    83
+    71    63    74    56    77    60    65    72    87    57
+     0     0     0     0     0     0     0     0     0     0
+    69    69    63    67    71    70    67    67    70    69
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 6.82e+13
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 6.82e+13
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 6.82e+13
+    80    66    73    71    65    63    62    67    67    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 6.82e+13
+completed replication 1 of 30 for gamma set 1
+completed replication 1 of 30 for gamma set 1
+completed replication 1 of 30 for gamma set 1
+completed replication 1 of 30 for gamma set 1
+completed replication 1 of 30 for gamma set 1
+completed replication 1 of 30 for gamma set 1
+completed replication 1 of 30 for gamma set 1
+completed replication 1 of 30 for gamma set 1
+    72    74    60    65    67    65    76    69    73    61
+    56    68    65    77    65    72    66    71    73    69
+    75    68    74    67    61    66    52    70    78    71
+    60    67    74    57    74    72    78    68    66    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.274e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.269e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.275e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.275e+14
+    76    55    65    76    71    59    74    63    62    81
+    60    83    66    67    63    73    72    72    62    64
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.269e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.28e+14
+    69    68    74    63    74    59    62    77    66    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.269e+14
+    78    63    67    72    71    80    65    56    66    64
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.27e+14
+completed replication 2 of 30 for gamma set 1
+completed replication 2 of 30 for gamma set 1
+completed replication 2 of 30 for gamma set 1
+completed replication 2 of 30 for gamma set 1
+completed replication 2 of 30 for gamma set 1
+completed replication 2 of 30 for gamma set 1
+completed replication 2 of 30 for gamma set 1
+completed replication 2 of 30 for gamma set 1
+    79    58    74    66    64    63    75    76    61    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.791e+14
+    68    71    68    60    72    56    69    72    77    69
+    56    80    67    69    61    67    65    62    74    81
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.806e+14
+    65    62    70    70    69    64    83    68    70    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.793e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.797e+14
+    64    77    76    71    60    69    59    81    61    64
+    85    59    60    73    70    75    71    62    72    55
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.811e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+    59    63    68    67    80    73    64    67    67    74
+accumulated cost during assignment: 1.792e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.8e+14
+    70    76    62    70    70    77    60    58    64    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 1.785e+14
+completed replication 3 of 30 for gamma set 1
+completed replication 3 of 30 for gamma set 1
+completed replication 3 of 30 for gamma set 1
+completed replication 3 of 30 for gamma set 1
+completed replication 3 of 30 for gamma set 1
+completed replication 3 of 30 for gamma set 1
+completed replication 3 of 30 for gamma set 1
+completed replication 3 of 30 for gamma set 1
+    71    60    68    70    69    89    75    63    61    56
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.258e+14
+    76    63    75    65    68    61    79    71    65    59
+    63    68    58    70    77    71    58    67    86    64
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.238e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.241e+14
+    69    89    81    53    63    66    53    74    67    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.233e+14
+    69    58    65    73    61    65    77    56    64    94
+    60    79    66    79    58    59    86    66    67    62
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.265e+14
+    66    65    62    70    73    63    62    86    65    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.251e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.257e+14
+    71    64    71    66    77    72    55    63    71    72
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.241e+14
+completed replication 4 of 30 for gamma set 1
+completed replication 4 of 30 for gamma set 1
+completed replication 4 of 30 for gamma set 1
+completed replication 4 of 30 for gamma set 1
+completed replication 4 of 30 for gamma set 1
+completed replication 4 of 30 for gamma set 1
+completed replication 4 of 30 for gamma set 1
+    63    78    60    66    58    77    69    68    66    77
+completed replication 4 of 30 for gamma set 1
+    78    69    64    53    74    68    67    81    68    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.661e+14
+    65    56    59    72    63    68    69    81    74    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.637e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.637e+14
+    72    64    67    67    77    57    70    51    86    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.638e+14
+    65    72    81    74    64    65    65    72    53    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.648e+14
+    77    56    60    67    71    73    73    70    65    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.642e+14
+    58    75    71    91    64    56    62    64    68    73
+    68    76    84    55    73    82    71    59    66    48
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.633e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.657e+14
+completed replication 5 of 30 for gamma set 1
+completed replication 5 of 30 for gamma set 1
+completed replication 5 of 30 for gamma set 1
+completed replication 5 of 30 for gamma set 1
+completed replication 5 of 30 for gamma set 1
+completed replication 5 of 30 for gamma set 1
+    67    62    64    72    80    74    58    66    65    74
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.994e+14
+completed replication 5 of 30 for gamma set 1
+completed replication 5 of 30 for gamma set 1
+completed replication 6 of 30 for gamma set 1
+    59    70    45    64    62    69    71    79    73    90
+    74    69    78    77    69    56    66    76    61    56
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.034e+14
+    69    77    59    62    70    81    72    70    62    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.986e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.983e+14
+    64    73    71    69    68    72    77    57    59    72
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.298e+14
+completed replication 7 of 30 for gamma set 1
+    69    64    82    63    80    69    64    58    68    65
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.005e+14
+    68    70    64    72    72    53    65    69    85    64
+    65    52    78    72    67    64    80    70    69    65
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.574e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.012e+14
+    77    62    74    78    62    67    72    54    70    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.011e+14
+    62    72    80    58    48    77    78    74    62    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 2.995e+14
+completed replication 6 of 30 for gamma set 1
+completed replication 6 of 30 for gamma set 1
+completed replication 6 of 30 for gamma set 1
+completed replication 8 of 30 for gamma set 1
+completed replication 6 of 30 for gamma set 1
+completed replication 6 of 30 for gamma set 1
+completed replication 6 of 30 for gamma set 1
+completed replication 6 of 30 for gamma set 1
+    73    65    64    83    82    66    53    59    71    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.826e+14
+    54    60    71    72    70    74    62    75    65    79
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.32e+14
+    77    72    73    53    62    66    69    75    77    58
+    82    66    62    79    73    74    57    66    65    58
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.287e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.286e+14
+    71    83    48    78    72    67    66    68    61    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.324e+14
+    66    71    71    68    78    66    68    61    61    72
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.324e+14
+    65    58    64    67    63    57    72    85    82    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.29e+14
+    67    63    86    60    59    68    75    58    76    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.319e+14
+completed replication 7 of 30 for gamma set 1
+completed replication 7 of 30 for gamma set 1
+completed replication 7 of 30 for gamma set 1
+completed replication 9 of 30 for gamma set 1
+completed replication 7 of 30 for gamma set 1
+completed replication 7 of 30 for gamma set 1
+completed replication 7 of 30 for gamma set 1
+completed replication 7 of 30 for gamma set 1
+    55    67    75    64    61    72    70    71    79    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.591e+14
+    74    75    57    61    70    71    66    70    73    65
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.555e+14
+    80    73    73    83    63    72    46    67    55    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.56e+14
+    76    65    51    85    72    76    60    67    65    65
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.05e+14
+    58    69    73    70    65    67    83    70    69    58
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.584e+14
+    66    65    55    75    72    66    65    72    69    77
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.593e+14
+completed replication 8 of 30 for gamma set 1
+    72    69    70    50    87    63    71    63    62    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.578e+14
+    76    76    65    71    61    71    64    62    68    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.562e+14
+completed replication 8 of 30 for gamma set 1
+completed replication 8 of 30 for gamma set 1
+completed replication 10 of 30 for gamma set 1
+completed replication 8 of 30 for gamma set 1
+    72    70    73    62    63    66    76    68    71    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.794e+14
+completed replication 8 of 30 for gamma set 1
+completed replication 8 of 30 for gamma set 1
+    59    72    81    70    60    70    82    60    58    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.819e+14
+completed replication 9 of 30 for gamma set 1
+    78    65    59    67    70    68    67    73    67    68
+completed replication 8 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.825e+14
+    72    74    60    67    62    74    71    64    55    83
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.816e+14
+    71    64    73    73    63    74    60    69    67    68
+completed replication 9 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.217e+14
+    60    71    56    70    76    70    78    62    63    76
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.999e+14
+    62    56    73    62    79    60    59    74    83    74
+    77    73    72    70    62    68    66    69    67    58
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.825e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.808e+14
+    70    57    77    66    74    57    61    70    66    84
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.023e+14
+completed replication 10 of 30 for gamma set 1
+    53    71    64    64    68    73    71    78    74    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.81e+14
+completed replication 9 of 30 for gamma set 1
+completed replication 9 of 30 for gamma set 1
+completed replication 11 of 30 for gamma set 1
+completed replication 9 of 30 for gamma set 1
+completed replication 9 of 30 for gamma set 1
+completed replication 10 of 30 for gamma set 1
+    74    65    67    56    79    66    76    73    68    58
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.189e+14
+    66    71    69    71    53    60    69    79    81    63
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.022e+14
+    66    66    70    67    59    73    69    68    69    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.363e+14
+    53    70    78    65    66    78    65    71    63    73
+completed replication 9 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.049e+14
+    74    66    65    61    78    65    64    68    77    64
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.008e+14
+    82    73    73    61    65    71    75    61    61    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.015e+14
+completed replication 12 of 30 for gamma set 1
+    80    68    66    96    65    62    68    54    54    69
+completed replication 10 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.21e+14
+completed replication 11 of 30 for gamma set 1
+completed replication 10 of 30 for gamma set 1
+completed replication 10 of 30 for gamma set 1
+    65    72    77    66    62    69    73    68    69    61
+completed replication 10 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 3.997e+14
+    65    74    89    63    67    70    57    64    65    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.194e+14
+    65    71    66    62    76    78    66    71    56    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.488e+14
+    59    63    62    66    74    78    73    73    65    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+completed replication 11 of 30 for gamma set 1
+accumulated cost during assignment: 4.184e+14
+    69    74    70    61    62    72    70    61    74    69
+    69    61    77    67    70    67    82    51    71    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.203e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.334e+14
+completed replication 10 of 30 for gamma set 1
+    61    73    63    70    70    61    78    60    79    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.23e+14
+completed replication 11 of 30 for gamma set 1
+completed replication 13 of 30 for gamma set 1
+completed replication 11 of 30 for gamma set 1
+completed replication 11 of 30 for gamma set 1
+    74    69    66    74    81    68    62    69    58    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.37e+14
+completed replication 12 of 30 for gamma set 1
+    61    69    76    63    61    59    73    67    75    78
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.357e+14
+    65    72    82    48    71    70    67    76    71    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.592e+14
+    66    65    54    61    66    62    64    92    74    78
+completed replication 11 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.185e+14
+    75    72    64    70    77    60    63    86    65    50
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.362e+14
+    62    74    71    66    56    78    67    68    69    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.355e+14
+completed replication 14 of 30 for gamma set 1
+completed replication 12 of 30 for gamma set 1
+completed replication 12 of 30 for gamma set 1
+    76    73    53    70    80    77    60    63    61    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.468e+14
+completed replication 12 of 30 for gamma set 1
+completed replication 12 of 30 for gamma set 1
+completed replication 11 of 30 for gamma set 1
+    76    60    64    60    67    62    59    75    72    87
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.379e+14
+    68    66    76    72    54    62    77    67    72    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.492e+14
+    57    71    62    57    75    77    73    70    72    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.71e+14
+    58    76    66    63    67    76    69    67    72    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.522e+14
+completed replication 13 of 30 for gamma set 1
+    65    58    73    60    67    71    80    58    74    76
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.494e+14
+    76    62    75    69    66    62    62    77    64    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.511e+14
+    54    69    73    75    87    66    66    64    60    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.64e+14
+completed replication 13 of 30 for gamma set 1
+completed replication 14 of 30 for gamma set 1
+    63    75    58    77    74    79    71    62    67    56
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.333e+14
+completed replication 12 of 30 for gamma set 1
+    72    51    66    83    63    63    73    65    71    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.735e+14
+completed replication 13 of 30 for gamma set 1
+completed replication 15 of 30 for gamma set 1
+completed replication 15 of 30 for gamma set 1
+completed replication 13 of 30 for gamma set 1
+    70    58    76    74    78    59    76    60    61    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.835e+14
+completed replication 13 of 30 for gamma set 1
+    64    79    64    85    75    57    75    53    68    62
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.581e+14
+completed replication 16 of 30 for gamma set 1
+completed replication 12 of 30 for gamma set 1
+    66    62    67    82    70    59    71    63    83    59
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.512e+14
+    72    61    62    73    67    83    51    76    68    69
+    57    63    69    71    71    81    81    67    60    62
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.908e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.624e+14
+    77    73    67    59    58    60    63    68    80    77
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.811e+14
+completed replication 17 of 30 for gamma set 1
+    67    71    70    73    68    73    66    67    67    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.62e+14
+    78    63    68    56    63    72    72    69    70    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.624e+14
+completed replication 14 of 30 for gamma set 1
+completed replication 13 of 30 for gamma set 1
+    71    78    69    68    66    61    60    79    64    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.475e+14
+completed replication 14 of 30 for gamma set 1
+completed replication 16 of 30 for gamma set 1
+    73    60    78    66    61    78    68    66    64    68
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.98e+14
+completed replication 14 of 30 for gamma set 1
+completed replication 14 of 30 for gamma set 1
+    74    63    72    71    74    81    59    66    70    52
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.7e+14
+    69    68    59    67    68    62    71    74    67    77
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.631e+14
+    74    77    61    61    54    69    68    68    65    85
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.719e+14
+completed replication 13 of 30 for gamma set 1
+    83    73    73    72    64    68    54    70    62    63
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.875e+14
+completed replication 18 of 30 for gamma set 1
+    68    76    73    76    76    66    52    53    75    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.74e+14
+    62    64    78    64    81    60    69    81    62    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.746e+14
+completed replication 14 of 30 for gamma set 1
+completed replication 15 of 30 for gamma set 1
+completed replication 15 of 30 for gamma set 1
+completed replication 17 of 30 for gamma set 1
+    76    63    68    69    46    63    78    67    75    77
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.603e+14
+completed replication 15 of 30 for gamma set 1
+    60    63    63    91    73    62    69    60    66    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.04e+14
+    66    90    64    77    52    49    78    79    60    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.721e+14
+completed replication 15 of 30 for gamma set 1
+    69    72    68    74    66    70    66    70    57    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.809e+14
+    62    78    70    66    75    71    61    70    70    59
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.797e+14
+    61    80    67    54    78    71    62    80    57    72
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.944e+14
+completed replication 14 of 30 for gamma set 1
+    62    66    76    73    56    65    65    79    65    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.826e+14
+completed replication 19 of 30 for gamma set 1
+completed replication 15 of 30 for gamma set 1
+    67    68    64    70    58    81    70    64    65    75
+completed replication 16 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.831e+14
+completed replication 18 of 30 for gamma set 1
+completed replication 16 of 30 for gamma set 1
+completed replication 16 of 30 for gamma set 1
+    73    54    69    57    70    81    74    64    70    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.691e+14
+    69    58    65    76    63    66    78    67    74    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.084e+14
+    70    73    60    64    82    60    76    73    64    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.818e+14
+    67    66    67    65    69    62    61    74    72    79
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.892e+14
+    78    79    77    63    67    76    66    62    55    59
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.999e+14
+completed replication 16 of 30 for gamma set 1
+    70    68    61    62    76    70    72    65    76    62
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.871e+14
+    75    74    58    75    65    66    64    66    78    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.899e+14
+completed replication 15 of 30 for gamma set 1
+completed replication 20 of 30 for gamma set 1
+completed replication 16 of 30 for gamma set 1
+completed replication 17 of 30 for gamma set 1
+completed replication 19 of 30 for gamma set 1
+    58    59    67    83    69    70    66    64    60    86
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.911e+14
+completed replication 17 of 30 for gamma set 1
+completed replication 17 of 30 for gamma set 1
+    67    58    64    65    73    80    69    62    84    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.779e+14
+    67    75    81    66    63    67    74    63    64    62
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.901e+14
+    84    65    67    68    70    71    67    61    73    56
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.132e+14
+    74    70    64    65    72    70    60    71    72    64
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.971e+14
+    67    66    62    71    66    69    75    71    78    57
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.057e+14
+    63    67    71    77    53    70    65    66    74    76
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.969e+14
+completed replication 17 of 30 for gamma set 1
+    62    57    76    81    68    59    63    67    70    79
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.953e+14
+completed replication 16 of 30 for gamma set 1
+completed replication 17 of 30 for gamma set 1
+completed replication 21 of 30 for gamma set 1
+completed replication 18 of 30 for gamma set 1
+completed replication 20 of 30 for gamma set 1
+completed replication 18 of 30 for gamma set 1
+    70    66    65    61    66    66    82    63    70    73
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.978e+14
+completed replication 18 of 30 for gamma set 1
+    62    60    59    69    79    70    80    68    69    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.978e+14
+    69    68    70    52    69    62    72    77    73    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.869e+14
+    83    70    58    68    65    57    65    72    72    72
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.037e+14
+    79    70    64    67    73    69    70    67    59    64
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.114e+14
+    66    65    55    72    67    69    71    65    83    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.165e+14
+    55    65    76    73    73    73    51    78    73    65
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.028e+14
+completed replication 18 of 30 for gamma set 1
+    72    61    77    65    64    61    61    71    70    80
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.019e+14
+completed replication 18 of 30 for gamma set 1
+completed replication 17 of 30 for gamma set 1
+completed replication 19 of 30 for gamma set 1
+completed replication 21 of 30 for gamma set 1
+completed replication 22 of 30 for gamma set 1
+completed replication 19 of 30 for gamma set 1
+    56    73    65    65    70    68    87    72    65    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.042e+14
+completed replication 19 of 30 for gamma set 1
+    67    72    65    66    72    71    69    64    71    65
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.044e+14
+    70    68    60    65    72    67    68    62    66    84
+     0     0     0     0     0     0     0     0     0     0
+    80    86    66    72    68    61    66    65    70    48
+    64    73    68    67    77    70    71    74    61    57
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.085e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 4.943e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.156e+14
+    60    73    73    74    78    63    67    65    53    76
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.204e+14
+    77    83    71    69    61    66    66    72    56    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.092e+14
+    67    65    75    68    77    60    67    61    72    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.07e+14
+completed replication 19 of 30 for gamma set 1
+completed replication 19 of 30 for gamma set 1
+completed replication 18 of 30 for gamma set 1
+completed replication 23 of 30 for gamma set 1
+completed replication 20 of 30 for gamma set 1
+completed replication 22 of 30 for gamma set 1
+completed replication 20 of 30 for gamma set 1
+    65    73    68    55    67    63    79    69    70    73
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.094e+14
+completed replication 20 of 30 for gamma set 1
+    74    63    64    55    61    78    77    67    74    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.011e+14
+    72    79    67    68    72    74    68    64    67    51
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.226e+14
+    67    70    82    65    63    73    65    63    68    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.102e+14
+    60    51    69    66    67    77    86    75    65    66
+    62    65    73    64    63    63    85    52    85    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.135e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.197e+14
+    72    78    74    67    61    76    55    61    59    79
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.109e+14
+completed replication 20 of 30 for gamma set 1
+    63    77    59    68    76    60    72    59    81    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.133e+14
+completed replication 20 of 30 for gamma set 1
+completed replication 21 of 30 for gamma set 1
+completed replication 19 of 30 for gamma set 1
+completed replication 24 of 30 for gamma set 1
+    59    71    55    66    80    74    54    75    72    76
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.148e+14
+    65    72    76    58    58    71    56    74    75    77
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.182e+14
+completed replication 23 of 30 for gamma set 1
+completed replication 21 of 30 for gamma set 1
+    60    64    77    72    51    56    72    76    79    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.126e+14
+completed replication 21 of 30 for gamma set 1
+completed replication 21 of 30 for gamma set 1
+completed replication 22 of 30 for gamma set 1
+    64    63    63    77    75    80    48    81    62    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.069e+14
+    81    67    66    53    68    66    72    68    64    77
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.259e+14
+    63    69    75    77    73    67    64    76    62    56
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.192e+14
+    78    66    61    80    78    70    58    50    78    63
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.222e+14
+    63    72    65    66    70    65    73    58    68    82
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.226e+14
+    67    69    58    61    68    57    78    65    82    77
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.156e+14
+completed replication 22 of 30 for gamma set 1
+completed replication 21 of 30 for gamma set 1
+completed replication 23 of 30 for gamma set 1
+    74    72    69    63    64    72    67    57    74    70
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.173e+14
+completed replication 20 of 30 for gamma set 1
+completed replication 25 of 30 for gamma set 1
+    65    72    59    50    68    72    75    83    63    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.231e+14
+    65    70    56    69    69    73    76    77    68    59
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.25e+14
+    74    58    76    74    64    76    71    70    48    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.163e+14
+completed replication 24 of 30 for gamma set 1
+completed replication 22 of 30 for gamma set 1
+completed replication 22 of 30 for gamma set 1
+completed replication 23 of 30 for gamma set 1
+    67    70    80    72    68    63    70    72    57    63
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.11e+14
+    69    69    57    79    75    73    77    49    59    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.291e+14
+completed replication 24 of 30 for gamma set 1
+    66    65    74    68    76    57    65    71    64    76
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.26e+14
+completed replication 22 of 30 for gamma set 1
+    66    63    75    72    63    77    61    76    61    68
+    63    74    80    71    61    74    60    69    64    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.259e+14
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.198e+14
+    66    77    71    68    61    70    80    67    62    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.209e+14
+completed replication 21 of 30 for gamma set 1
+completed replication 26 of 30 for gamma set 1
+    65    81    49    74    71    63    74    66    78    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.272e+14
+completed replication 23 of 30 for gamma set 1
+completed replication 24 of 30 for gamma set 1
+    71    65    66    62    72    67    71    71    66    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.197e+14
+    73    68    69    74    73    64    67    64    61    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.158e+14
+    65    71    66    76    62    73    64    72    64    69
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.313e+14
+completed replication 25 of 30 for gamma set 1
+    72    64    70    63    81    55    61    64    83    69
+completed replication 23 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.234e+14
+completed replication 25 of 30 for gamma set 1
+    64    59    74    79    74    65    67    74    65    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.282e+14
+completed replication 23 of 30 for gamma set 1
+completed replication 22 of 30 for gamma set 1
+    71    53    67    71    76    74    66    64    70    70
+completed replication 27 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.285e+14
+    70    70    69    66    62    70    68    67    69    71
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.234e+14
+    62    71    69    71    67    77    64    69    69    63
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.301e+14
+completed replication 25 of 30 for gamma set 1
+    58    61    77    73    62    84    76    65    61    65
+completed replication 24 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.225e+14
+    76    65    67    76    63    63    49    82    78    63
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.193e+14
+completed replication 23 of 30 for gamma set 1
+completed replication 26 of 30 for gamma set 1
+completed replication 24 of 30 for gamma set 1
+    71    68    68    63    70    60    78    71    58    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.336e+14
+completed replication 26 of 30 for gamma set 1
+    67    67    65    60    67    67    63    93    73    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.305e+14
+    72    69    56    67    63    65    68    80    76    66
+    80    64    66    73    54    68    59    80    66    72
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.261e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.232e+14
+completed replication 24 of 30 for gamma set 1
+    62    72    76    75    70    66    63    60    67    71
+    68    67    78    57    73    68    73    58    73    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.254e+14
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.308e+14
+completed replication 28 of 30 for gamma set 1
+    80    62    66    60    80    71    67    68    68    60
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.33e+14
+completed replication 24 of 30 for gamma set 1
+    73    59    71    59    75    73    76    56    76    64
+completed replication 25 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.258e+14
+completed replication 26 of 30 for gamma set 1
+completed replication 25 of 30 for gamma set 1
+    68    72    67    65    60    61    70    71    66    82
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.356e+14
+completed replication 27 of 30 for gamma set 1
+    66    64    74    67    64    74    66    73    55    79
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.258e+14
+completed replication 27 of 30 for gamma set 1
+    76    74    71    57    67    58    60    80    72    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.277e+14
+    67    77    71    84    64    77    58    59    53    72
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.283e+14
+completed replication 25 of 30 for gamma set 1
+    65    70    62    66    85    65    62    60    76    71
+completed replication 29 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.322e+14
+    66    66    74    52    61    89    69    73    69    63
+completed replication 25 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.332e+14
+    72    57    79    57    72    68    67    72    75    63
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.294e+14
+completed replication 26 of 30 for gamma set 1
+    68    67    65    76    70    67    63    60    79    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.347e+14
+    70    59    61    76    65    67    72    75    61    76
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.311e+14
+completed replication 26 of 30 for gamma set 1
+completed replication 26 of 30 for gamma set 1
+    61    77    67    66    58    52    91    59    75    76
+completed replication 27 of 30 for gamma set 1
+    64    69    63    66    69    79    78    63    56    75
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.281e+14
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.37e+14
+completed replication 27 of 30 for gamma set 1
+completed replication 28 of 30 for gamma set 1
+    59    70    70    72    63    60    74    69    63    82
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.331e+14
+    73    68    70    77    51    76    72    64    64    67
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.294e+14
+    70    73    80    67    58    68    56    83    61    66
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.336e+14
+completed replication 30 of 30 for gamma set 1
+    62    70    69    69    66    68    73    69    72    64
+completed replication 28 of 30 for gamma set 1
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.302e+14
+    71    70    62    64    70    61    73    79    71    61
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.351e+14
+completed replication 26 of 30 for gamma set 1
+completed replication 27 of 30 for gamma set 1
+completed replication 28 of 30 for gamma set 1
+completed replication 28 of 30 for gamma set 1
+completed replication 29 of 30 for gamma set 1
+    56    63    73    73    75    71    59    74    76    62
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+accumulated cost during assignment: 5.358e+14
+time: 13650
+completed replication 27 of 30 for gamma set 1

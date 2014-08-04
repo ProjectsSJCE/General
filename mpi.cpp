@@ -1,6 +1,6 @@
 //Version 21: Greedy algorithm variations     last modified: 7-9-2014
 //NOTE: THIS VERSION ASSUMES INPUT FILES ARE SORTED IN DESCENDING ORDER
-//g++ -fopenmp openmp.cpp
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -10,8 +10,8 @@
 #include <iomanip>
 #include <string>
 #include <cfloat>
+#include <mpi.h>
 #include <omp.h>
-//#include <thread>
 using namespace std;
 
 void bubble_sort(int *randarray, int **order, int NUMclient, int n)
@@ -238,35 +238,38 @@ void ObtainRivalTable(long int priceset[3][3][10], int clientrival[], int firmcu
 	}
 }
 
-void create_threads(int **related,int ** order,double  *clientsmin,double *firmstatus,double *gammap1,double **prices,int *clientsfirm, double *clientsize,double *fstogamma, int *dupprice,int n,int NUMclient,int NUMfirm,double *clientscost,double *clientsprice,double part1,double *clpr_ovr_clsz,double w, int *clientrival,long int priceset[3][3][10],int firmcut[],double tempdouble, int flag)
-{
-    int num_threads = 8, offset, iter=0; 
-    int end = 0, start, rc;
-    offset = (int)(NUMclient / num_threads);
-    int tid;
-    
-    omp_set_num_threads(num_threads);
-    #pragma omp parallel private(tid)
-//    for (iter=0; iter<num_threads; iter++)
-    {
-        start = end;
-        end += offset;
-        if( iter == (num_threads-1))
-            end = NUMclient - 1;
-            
-        if (flag == 1)
-            performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
-        else if (flag == 2)
-            initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end);
-        else if (flag == 3) 
-            CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end);
-        else
-            ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end);
-        iter += 1;
-    }
-}
+//void create_threads(int **related,int ** order,double  *clientsmin,double *firmstatus,double *gammap1,double **prices,int *clientsfirm, double *clientsize,double *fstogamma, int *dupprice,int n,int NUMclient,int NUMfirm,double *clientscost,double *clientsprice,double part1,double *clpr_ovr_clsz,double w, int *clientrival,long int priceset[3][3][10],int firmcut[],double tempdouble, int flag)
+//{
+//    int num_threads = 8, offset, iter; 
+//    int end = 0, start, rc;
+//    offset = (int)(NUMclient / num_threads);
+//    void *status;
+//    std::thread t[num_threads];
 
-int main()
+//    for (iter=0; iter<num_threads; iter++)
+//    {
+//        start = end;
+//        end += offset;
+//        if( iter == (num_threads-1))
+//            end = NUMclient - 1;
+//            
+//        if (flag == 1)
+//            t[iter] = std::thread(performComputation, related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
+//        else if (flag == 2)
+//            t[iter] = std::thread(initialise, NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end);
+//        else if (flag == 3) 
+//            t[iter] = std::thread(CalculateLowest, NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end);
+//        else
+//            t[iter] = std::thread(ObtainRivalTable, priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end);
+//    }
+
+//    for (iter=0; iter<num_threads; iter++)
+//    {
+//        t[iter].join();
+//    }      
+//}
+
+int main(int argc, char *argv[])
 {
 	int start_s=clock();
 
@@ -333,6 +336,7 @@ int main()
     int ** auditfirm;               // auditor for each client, for each replication
     int * dupprice;                 // holds duplicate firm with same price to break ties
     int tempint;
+    int my_id, root_process, ierr, num_procs, piter, start, end, offset;
 	time_t t1,t2;
 
 	t1 = time(NULL);
@@ -453,17 +457,49 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 
 	for (i=0;i<NUMfirm;i++)
 		fstogamma[i] = pow(firmsize[i],gamma[i]);  // for computation later
-
+	
+	//_________---------===============START==================--------------_________________________	
+	
+//	ierr = MPI_Init(&argc, &argv);
+//    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+//    ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+    
+//    end = 0;
+//    offset = (int)(NUMclient / num_procs);
+//    for(piter = 0; piter < num_procs; piter++)
+//    {
+//        start = end;
+//        end += offset;
+//        if( iter == (num_threads-1))
+//            end = NUMclient - 1;
+//        
+//        if(my_id == piter)
+//            performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
+//    }
+    ierr = MPI_Init(&argc, &argv);
+    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+    ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+    
  for (n=0;n<NUMreps;n++)
  {
 	
     initializeFirmAndRelated(tclpr_ovr_clsz, firmstatus, related, NUMfirm, NUMclient);
-
-    //PERFORM MULITTHREADING HERE ----------------------------------------------------------------------------------------------------
-    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,1);
     
-//    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, 0, NUMclient);        
-//-----------------------------------------------------------------------------------------------------------------    
+//    end = 0;
+    offset = (int)(NUMclient / num_procs);
+//    for(piter = 0; piter < num_procs; piter++)
+//    {
+//        start = end;
+//        end += offset;
+//        if( piter == (num_procs-1))
+//            end = NUMclient - 1;
+//        
+//        if(my_id == piter)
+    start = my_id * offset;
+    end = ((my_id + 1) * offset) - 1;
+            performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end + 1);
+//    }
+//    ierr = MPI_Finalize();
     
 	// tally distribution of clients
 	for(a=0;a<3;a++)
@@ -484,19 +520,42 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 		totalcost += clientsmin[j];
 	cout << "accumulated cost during assignment: " << totalcost << endl;
     
+//    ierr = MPI_Init(&argc, &argv);
+//    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+//    ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+    
+    start = my_id * offset;
+    end = ((my_id + 1) * offset) - 1;
+            initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end + 1);
+//    ierr = MPI_Finalize();
+    
 //    PERFORM MULITTHREADING ------------------------------------------------------------------------------------------------
 //    initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, 0, NUMclient);
-    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
+//    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
 //----------------------------------------------------------------------------------------------------------------------------
-
+    start = my_id * offset;
+    end = ((my_id + 1) * offset) - 1;
+            CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end+1);
+//            initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end);
+//    ierr = MPI_Finalize();
+    
     // PERFORM MULITTHREADING HERE	-------------------------------------------------------------------------------------------------
 //	CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, 0, NUMclient);
-	create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,3);
+//	create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,3);
 //---------------------------------------------------------------------------------------------------------
 
     /// YOU WILL HAVE TO MULTITHREAD HERE ---------------------------------------------------------------------------------------------------------
 	tempdouble = double(NUMclient)/10.;  // for rivlout output, nearest rival table
-    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,4);
+	
+//    ierr = MPI_Init(&argc, &argv);
+//    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+//    ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
+    
+    start = my_id * offset;
+    end = ((my_id + 1) * offset) - 1;
+            ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end+1);
+    
+//    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,4);
 //	ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, 0, NUMclient);
 //---------------------------------------------------------------------------------------------------------
 
@@ -631,14 +690,14 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 	clntout << endl;
 int stop_s=clock();
 cout<<"time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<endl;
-return 0;
 
 } // end main loop (m)()()
-
-
+    
+    ierr = MPI_Finalize();
 	t2 = time(NULL);
 	econout	<< setw(18) << "run time (m:s)" << endl
 				<< int((t2-t1)/60) << ":" << ((t2-t1)%60) << endl;
 	econout.close();
+//	return 0;
 }
 

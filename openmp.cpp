@@ -1,6 +1,7 @@
 //Version 21: Greedy algorithm variations     last modified: 7-9-2014
 //NOTE: THIS VERSION ASSUMES INPUT FILES ARE SORTED IN DESCENDING ORDER
 
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -10,8 +11,8 @@
 #include <iomanip>
 #include <string>
 #include <cfloat>
+#include <mpi.h>
 #include <omp.h>
-//#include <thread>
 using namespace std;
 
 void bubble_sort(int *randarray, int **order, int NUMclient, int n)
@@ -238,35 +239,38 @@ void ObtainRivalTable(long int priceset[3][3][10], int clientrival[], int firmcu
 	}
 }
 
-void create_threads(int **related,int ** order,double  *clientsmin,double *firmstatus,double *gammap1,double **prices,int *clientsfirm, double *clientsize,double *fstogamma, int *dupprice,int n,int NUMclient,int NUMfirm,double *clientscost,double *clientsprice,double part1,double *clpr_ovr_clsz,double w, int *clientrival,long int priceset[3][3][10],int firmcut[],double tempdouble, int flag)
-{
-    int num_threads = 8, offset, iter=0; 
-    int end = 0, start, rc;
-    offset = (int)(NUMclient / num_threads);
-    int tid;
-    
-    omp_set_num_threads(num_threads);
-    #pragma omp parallel private(tid)
-//    for (iter=0; iter<num_threads; iter++)
-    {
-        start = end;
-        end += offset;
-        if( iter == (num_threads-1))
-            end = NUMclient - 1;
-            
-        if (flag == 1)
-            performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
-        else if (flag == 2)
-            initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end);
-        else if (flag == 3) 
-            CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end);
-        else
-            ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end);
-        iter += 1;
-    }
-}
+//void create_threads(int **related,int ** order,double  *clientsmin,double *firmstatus,double *gammap1,double **prices,int *clientsfirm, double *clientsize,double *fstogamma, int *dupprice,int n,int NUMclient,int NUMfirm,double *clientscost,double *clientsprice,double part1,double *clpr_ovr_clsz,double w, int *clientrival,long int priceset[3][3][10],int firmcut[],double tempdouble, int flag)
+//{
+//    int num_threads = 8, offset, iter; 
+//    int end = 0, start, rc;
+//    offset = (int)(NUMclient / num_threads);
+//    void *status;
+//    std::thread t[num_threads];
 
-int main()
+//    for (iter=0; iter<num_threads; iter++)
+//    {
+//        start = end;
+//        end += offset;
+//        if( iter == (num_threads-1))
+//            end = NUMclient - 1;
+//            
+//        if (flag == 1)
+//            t[iter] = std::thread(performComputation, related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
+//        else if (flag == 2)
+//            t[iter] = std::thread(initialise, NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, start, end);
+//        else if (flag == 3) 
+//            t[iter] = std::thread(CalculateLowest, NUMfirm, clientsfirm, clientrival, prices, clientsprice, start, end);
+//        else
+//            t[iter] = std::thread(ObtainRivalTable, priceset, clientrival, firmcut, clientsfirm, tempdouble, start, end);
+//    }
+
+//    for (iter=0; iter<num_threads; iter++)
+//    {
+//        t[iter].join();
+//    }      
+//}
+
+int main(int argc, char *argv[])
 {
 	int start_s=clock();
 
@@ -333,6 +337,7 @@ int main()
     int ** auditfirm;               // auditor for each client, for each replication
     int * dupprice;                 // holds duplicate firm with same price to break ties
     int tempint;
+    int my_id, root_process, ierr, num_procs, piter, start, end, offset;
 	time_t t1,t2;
 
 	t1 = time(NULL);
@@ -453,192 +458,224 @@ for (m=0;m<NUMgamma;m++)		// start main loop, m is index of gamma set
 
 	for (i=0;i<NUMfirm;i++)
 		fstogamma[i] = pow(firmsize[i],gamma[i]);  // for computation later
-
- for (n=0;n<NUMreps;n++)
- {
 	
-    initializeFirmAndRelated(tclpr_ovr_clsz, firmstatus, related, NUMfirm, NUMclient);
-
-    //PERFORM MULITTHREADING HERE ----------------------------------------------------------------------------------------------------
-    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,1);
+	//_________---------===============START==================--------------_________________________	
+	
+//	ierr = MPI_Init(&argc, &argv);
+//    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+//    ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
     
-//    performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, 0, NUMclient);        
-//-----------------------------------------------------------------------------------------------------------------    
+//    end = 0;
+//    offset = (int)(NUMclient / num_procs);
+//    for(piter = 0; piter < num_procs; piter++)
+//    {
+//        start = end;
+//        end += offset;
+//        if( iter == (num_threads-1))
+//            end = NUMclient - 1;
+//        
+//        if(my_id == piter)
+//            performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, start, end);
+//    }
+    ierr = MPI_Init(&argc, &argv);
+    ierr = MPI_Comm_rank(MPI_COMM_WORLD, &my_id);
+    ierr = MPI_Comm_size(MPI_COMM_WORLD, &num_procs);
     
-	// tally distribution of clients
-	for(a=0;a<3;a++)
-		for(b=0;b<10;b++)
-			table[a][b] = 0;
+    omp_set_num_threads(num_procs);
+    int tid;
+     for (n=0;n<NUMreps;n++)
+     {
+	
+        initializeFirmAndRelated(tclpr_ovr_clsz, firmstatus, related, NUMfirm, NUMclient);
+        offset = int(NUMclient / num_procs);
+        #pragma omp parallel default(shared) private(my_id)
+        {        
+//            start = my_id * offset;
+//    end = ((my_id + 1) * offset) - 1;
+            performComputation(related, order, clientsmin, firmstatus, gammap1, prices, clientsfirm, clientsize, fstogamma, dupprice, n, NUMclient, NUMfirm, my_id * offset, ((my_id + 1) * offset));
+    //    ierr = MPI_Finalize();
+        }
+	    // tally distribution of clients
+	    for(a=0;a<3;a++)
+		    for(b=0;b<10;b++)
+			    table[a][b] = 0;
 
-	for(a=0;a<3;a++)
-		for(b=0;b<10;b++)
-			for(i=firmcut[a];i<firmcut[a+1];i++)
-				for(j=clientcut[b];j<clientcut[b+1];j++)
-					table[a][b] += related[i][j];
-
-
-    print_out_table(firmcut, g, m, xtable, table, tablout);
-
-	totalcost = 0.;
-	for (j=0;j<NUMclient;j++) // these are prices developed en route
-		totalcost += clientsmin[j];
-	cout << "accumulated cost during assignment: " << totalcost << endl;
-    
-//    PERFORM MULITTHREADING ------------------------------------------------------------------------------------------------
-//    initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, 0, NUMclient);
-    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,2);
-//----------------------------------------------------------------------------------------------------------------------------
-
-    // PERFORM MULITTHREADING HERE	-------------------------------------------------------------------------------------------------
-//	CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, 0, NUMclient);
-	create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,3);
-//---------------------------------------------------------------------------------------------------------
-
-    /// YOU WILL HAVE TO MULTITHREAD HERE ---------------------------------------------------------------------------------------------------------
-	tempdouble = double(NUMclient)/10.;  // for rivlout output, nearest rival table
-    create_threads(related,order,clientsmin,firmstatus,gammap1,prices,clientsfirm,clientsize,fstogamma,dupprice,n,NUMclient,NUMfirm,clientscost,clientsprice,part1,clpr_ovr_clsz,w,clientrival,priceset,firmcut,tempdouble,4);
-//	ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, 0, NUMclient);
-//---------------------------------------------------------------------------------------------------------
-
-	for (i=0;i<NUMfirm;i++)
-	{
-		clperfirm[i] = 0;
-		for (j=0;j<NUMclient;j++)       // number of clients per firm
-			clperfirm[i] += related[i][j];
-		tfirmstatus[i] += firmstatus[i];	// accumulate for average firm status
-		tempdouble = firmstatus[i];
-		tcostpfirm[i]=                  // get each firm's cost
-			(tempdouble<=0.)? 0.: (pow(tempdouble,gammap1[i]) / fstogamma[i]);
-		xtcostpfirm[i] += tcostpfirm[i];  // accumulate over n reps
-	}
-
-	totalprice = 0.;
+	    for(a=0;a<3;a++)
+		    for(b=0;b<10;b++)
+			    for(i=firmcut[a];i<firmcut[a+1];i++)
+				    for(j=clientcut[b];j<clientcut[b+1];j++)
+					    table[a][b] += related[i][j];
 
 
-	for (j=0;j<NUMclient;j++)
-	{             // accumulate totals and firm totals
-		totalprice += clientsprice[j];
-		tpricepfirm[clientsfirm[j]] += clientsprice[j];
-		tclpr_ovr_clsz[clientsfirm[j]] += clpr_ovr_clsz[j];
-		auditfirm[n][j] = clientsfirm[j];     // accumulate for clntout
-	}
+        print_out_table(firmcut, g, m, xtable, table, tablout);
 
-	for (i=0;i<NUMfirm;i++)
-	{
-				// accumulate average per replication
-		profit[i] =  tpricepfirm[i] - xtcostpfirm[i]  ;
-		aclpr_ovr_clsz[i] += clperfirm[i] ? (tclpr_ovr_clsz[i]/clperfirm[i]) : 0.;
-		tcpf_ovr_fst[i] += (firmstatus[i]>0.) ? (tcostpfirm[i]/firmstatus[i]) : 0.;
-		tprmarg[i] += (tpricepfirm[i]>0.) ? (profit[i] / tpricepfirm[i]) : 0.;
-	}
+	    totalcost = 0.;
+	    for (j=0;j<NUMclient;j++) // these are prices developed en route
+		    totalcost += clientsmin[j];
+	    cout << "accumulated cost during assignment: " << totalcost << endl;
+        
+        #pragma omp parallel default(shared) private(my_id)
+        {        
+//            start = my_id * offset;
+//    end = ((my_id + 1) * offset) - 1;
+            initialise(NUMclient, clientscost, clientsprice, NUMfirm, related, firmstatus, clientsize, part1, gammap1, prices, clpr_ovr_clsz, w, fstogamma, my_id * offset, ((my_id + 1) * offset));
+        }
+        
+        #pragma omp parallel default(shared) private(my_id)
+        {
+//            start = my_id * offset;
+//    end = ((my_id + 1) * offset) - 1;
+            CalculateLowest(NUMfirm, clientsfirm, clientrival, prices, clientsprice, my_id * offset, ((my_id + 1) * offset));
+        }
+                
 
-    
-	if (n==0)
-	{
-		econout << setw(18) << "total price: " ;
-		econout << setw(18) << "total cost: " ;
-		econout << setw(18) << "total profit: " ;
-		econout << endl ;
-	}
-    write_econout_2(totalprice, totalcost, econout);
+	    tempdouble = double(NUMclient)/10.;  // for rivlout output, nearest rival table
+        
+        #pragma omp parallel default(shared) private(my_id)
+        {	
+//            start = my_id * offset;
+//    end = ((my_id + 1) * offset) - 1;
+            ObtainRivalTable(priceset, clientrival, firmcut, clientsfirm, tempdouble, my_id * offset, ((my_id + 1) * offset));
+        } //End of pragma
+	  
+	    for (i=0;i<NUMfirm;i++)
+	    {
+		    clperfirm[i] = 0;
+		    for (j=0;j<NUMclient;j++)       // number of clients per firm
+			    clperfirm[i] += related[i][j];
+		    tfirmstatus[i] += firmstatus[i];	// accumulate for average firm status
+		    tempdouble = firmstatus[i];
+		    tcostpfirm[i]=                  // get each firm's cost
+			    (tempdouble<=0.)? 0.: (pow(tempdouble,gammap1[i]) / fstogamma[i]);
+		    xtcostpfirm[i] += tcostpfirm[i];  // accumulate over n reps
+	    }
 
-	if (greedymethod==2)
-		cout<<"completed replication "<<(n+1)<<" of "<<NUMreps
-			 <<" for gamma set " << (m+1) <<endl;
+	    totalprice = 0.;
 
- } // end replication loop (n)
 
-	// output on firms:
-	firmout  << endl;
-	firmout  << setw(6) << "size"
-				<< setw(4) << "idx"
-				<< setw(7) << "A(p/s)"
-				<< setw(6) << "c/js"
-				<< setw(6) << "p/ptn"
-				<< setw(6) << "load"
-				<< setw(4) << "gam"
-				<< setw(10) << "price"
-				<< setw(10) << "cost"
-				<< setw(10) << "profit"
-				<< setw(6) << "p_mr"
-				<< endl;
-	tempdouble = double(NUMreps);
-	for (i=0;i<NUMfirm;i++)
-	{
-		firmout << setw(6) << setprecision(0) << firmsize[i]
-				  << setw(4) << i
-				  << setprecision(2)
-				  << setw(7) << (aclpr_ovr_clsz[i] / tempdouble)
-				  << setw(6)
-				  << (tcpf_ovr_fst[i]/tempdouble)
-				  << setw(6) << (profit[i] / (firmsize[i]*tempdouble))
-				  << setw(6) << (tfirmstatus[i] / (firmsize[i]*tempdouble))
-				  << setw(6) << gamma[i]
-				  << setw(10) << (tpricepfirm[i]/tempdouble)
-				  << setw(10) << (xtcostpfirm[i]/tempdouble)
-				  << setw(10) << (profit[i]/tempdouble)
-				  << setw(6) << (tprmarg[i]/tempdouble)
-				  << endl;
-	}
-	xtabout << endl << "Per type basis: "<< endl;
-	tempdouble = double(NUMreps);
-	for(a=0;a<3;a++)      // print out table
-	{
-		xtabout << setprecision(0);
-		xtabout << (firmcut[a+1] - firmcut[a]) << '\t' ;
-		xtabout << setprecision(2);
-		xtabout << setw(5) << g[a][m] << '\t';
-		for(b=0;b<10;b++)
-		{
-			xtable[a][b] /= tempdouble;
-			xtabout << setw(8) << xtable[a][b] ;
-		}
-		xtabout << endl;
-	}
-	xtabout << endl << "Per firm basis: " << endl;
-	for(a=0;a<3;a++)
-	{
-		xtabout << setprecision(0);
-		xtabout << (firmcut[a+1] - firmcut[a]) << '\t' ;
-		xtabout << setprecision(2);
-		xtabout << setw(5) << g[a][m] << '\t';
-		tempdouble = double(firmcut[a+1]-firmcut[a]);
-		for(b=0;b<10;b++)
-		{
-			xtabout << setw(8) << (xtable[a][b] / tempdouble);
-		}
-		xtabout << endl;
-	}
+	    for (j=0;j<NUMclient;j++)
+	    {             // accumulate totals and firm totals
+		    totalprice += clientsprice[j];
+		    tpricepfirm[clientsfirm[j]] += clientsprice[j];
+		    tclpr_ovr_clsz[clientsfirm[j]] += clpr_ovr_clsz[j];
+		    auditfirm[n][j] = clientsfirm[j];     // accumulate for clntout
+	    }
 
-	for(a=0;a<3;a++)
-	{
-		rivlout << endl;
-		for(b=0;b<3;b++)
-			for(c=0;c<10;c++)
-				rivlout << setw(7) << priceset[a][b][c];
-	}
-	rivlout << endl;
+	    for (i=0;i<NUMfirm;i++)
+	    {
+				    // accumulate average per replication
+		    profit[i] =  tpricepfirm[i] - xtcostpfirm[i]  ;
+		    aclpr_ovr_clsz[i] += clperfirm[i] ? (tclpr_ovr_clsz[i]/clperfirm[i]) : 0.;
+		    tcpf_ovr_fst[i] += (firmstatus[i]>0.) ? (tcostpfirm[i]/firmstatus[i]) : 0.;
+		    tprmarg[i] += (tpricepfirm[i]>0.) ? (profit[i] / tpricepfirm[i]) : 0.;
+	    }
 
-	for(j=0;j<NUMclient;j++)
-	{
-		clntout << setprecision(2)
-			<< setw(7) << clientsize[j]
-			<< setprecision(0);
-		for(n=0;n<NUMreps;n++)
-			clntout << setw(4) << auditfirm[n][j];
-		clntout << endl;
-	}
-	clntout << endl;
-int stop_s=clock();
-cout<<"time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<endl;
-return 0;
+        
+	    if (n==0)
+	    {
+		    econout << setw(18) << "total price: " ;
+		    econout << setw(18) << "total cost: " ;
+		    econout << setw(18) << "total profit: " ;
+		    econout << endl ;
+	    }
+        write_econout_2(totalprice, totalcost, econout);
 
+	    if (greedymethod==2)
+		    cout<<"completed replication "<<(n+1)<<" of "<<NUMreps
+			     <<" for gamma set " << (m+1) <<endl;
+        
+     }    // end replication loop (n)
+
+	    // output on firms:
+	    firmout  << endl;
+	    firmout  << setw(6) << "size"
+				    << setw(4) << "idx"
+				    << setw(7) << "A(p/s)"
+				    << setw(6) << "c/js"
+				    << setw(6) << "p/ptn"
+				    << setw(6) << "load"
+				    << setw(4) << "gam"
+				    << setw(10) << "price"
+				    << setw(10) << "cost"
+				    << setw(10) << "profit"
+				    << setw(6) << "p_mr"
+				    << endl;
+	    tempdouble = double(NUMreps);
+	    for (i=0;i<NUMfirm;i++)
+	    {
+		    firmout << setw(6) << setprecision(0) << firmsize[i]
+				      << setw(4) << i
+				      << setprecision(2)
+				      << setw(7) << (aclpr_ovr_clsz[i] / tempdouble)
+				      << setw(6)
+				      << (tcpf_ovr_fst[i]/tempdouble)
+				      << setw(6) << (profit[i] / (firmsize[i]*tempdouble))
+				      << setw(6) << (tfirmstatus[i] / (firmsize[i]*tempdouble))
+				      << setw(6) << gamma[i]
+				      << setw(10) << (tpricepfirm[i]/tempdouble)
+				      << setw(10) << (xtcostpfirm[i]/tempdouble)
+				      << setw(10) << (profit[i]/tempdouble)
+				      << setw(6) << (tprmarg[i]/tempdouble)
+				      << endl;
+	    }
+	    xtabout << endl << "Per type basis: "<< endl;
+	    tempdouble = double(NUMreps);
+	    for(a=0;a<3;a++)      // print out table
+	    {
+		    xtabout << setprecision(0);
+		    xtabout << (firmcut[a+1] - firmcut[a]) << '\t' ;
+		    xtabout << setprecision(2);
+		    xtabout << setw(5) << g[a][m] << '\t';
+		    for(b=0;b<10;b++)
+		    {
+			    xtable[a][b] /= tempdouble;
+			    xtabout << setw(8) << xtable[a][b] ;
+		    }
+		    xtabout << endl;
+	    }
+	    xtabout << endl << "Per firm basis: " << endl;
+	    for(a=0;a<3;a++)
+	    {
+		    xtabout << setprecision(0);
+		    xtabout << (firmcut[a+1] - firmcut[a]) << '\t' ;
+		    xtabout << setprecision(2);
+		    xtabout << setw(5) << g[a][m] << '\t';
+		    tempdouble = double(firmcut[a+1]-firmcut[a]);
+		    for(b=0;b<10;b++)
+		    {
+			    xtabout << setw(8) << (xtable[a][b] / tempdouble);
+		    }
+		    xtabout << endl;
+	    }
+
+	    for(a=0;a<3;a++)
+	    {
+		    rivlout << endl;
+		    for(b=0;b<3;b++)
+			    for(c=0;c<10;c++)
+				    rivlout << setw(7) << priceset[a][b][c];
+	    }
+	    rivlout << endl;
+
+	    for(j=0;j<NUMclient;j++)
+	    {
+		    clntout << setprecision(2)
+			    << setw(7) << clientsize[j]
+			    << setprecision(0);
+		    for(n=0;n<NUMreps;n++)
+			    clntout << setw(4) << auditfirm[n][j];
+		    clntout << endl;
+	    }
+	    clntout << endl;
+    int stop_s=clock();
+    cout<<"time: "<<(stop_s-start_s)/double(CLOCKS_PER_SEC)*1000<<endl;
 } // end main loop (m)()()
-
-
+    
+    ierr = MPI_Finalize();
 	t2 = time(NULL);
 	econout	<< setw(18) << "run time (m:s)" << endl
 				<< int((t2-t1)/60) << ":" << ((t2-t1)%60) << endl;
 	econout.close();
+//	return 0;
 }
 
