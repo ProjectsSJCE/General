@@ -1,6 +1,6 @@
 //Version 21: Greedy algorithm variations     last modified: 7-9-2014
 //NOTE: THIS VERSION ASSUMES INPUT FILES ARE SORTED IN DESCENDING ORDER
-
+//compile using g++ -std=c++0x -pthread refactored.cpp
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
